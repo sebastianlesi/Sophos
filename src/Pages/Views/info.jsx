@@ -26,8 +26,9 @@ const Info = () => {
   //handle
   const handleExchange = async () => {
     const exchangeRequest = await getCurrenty(exchange);
-    if (exchangeRequest.status === "200") {
-      setExchange((prev) => ({ ...prev, result: exchangeRequest.data }));
+    const convertRequest = JSON.parse(exchangeRequest);
+    if (convertRequest.success) {
+      setExchange((prev) => ({ ...prev, result: convertRequest.result }));
     } else {
       alert("Algo fallo");
     }
